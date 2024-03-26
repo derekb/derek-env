@@ -1,0 +1,19 @@
+---
+- name: Install timewarrior
+  package:
+    name: timewarrior
+    state: present
+- name: Install timewarrior
+  package:
+    name: taskwarrior-tui
+    state: present
+- name: Install Obsidian
+  homebrew_cask:
+    name: obsidian
+    state: present
+  when: ansible_facts.os_family == "Darwin"
+- name: Install Obsidian
+  snap:
+    name: obsidian
+    state: present
+  when: ansible_facts.os_family == "Debian"

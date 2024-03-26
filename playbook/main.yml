@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  gather_facts: true
+  pre_tasks:
+    - name: Update the cache (homebrew)
+      homebrew:
+        update_homebrew: true
+      when: ansible_facts.os_family == "Darwin"
+    - name: Update the cache (apt)
+      apt:
+        update_cache: true
+      when: ansible_facts.os_family == "Debian"
+
+  # tasks:
+  #   - name: Display Ansible facts
+  #     debug:
+  #       var: ansible_facts
+  roles:
+    - roles/productivity
